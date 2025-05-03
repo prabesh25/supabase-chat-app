@@ -62,11 +62,15 @@ function App() {
   }, [session]);
 
   const signIn = async () => {
+<<<<<<< HEAD
     await supabase.auth.signInWithOAuth({ provider: "google",
       options: {
         redirectTo: 'https://supabase-chat-ap.vercel.app/', // replace with your Vercel URL
       },
      });
+=======
+    await supabase.auth.signInWithOAuth({ provider: "google" });
+>>>>>>> 8811df612d44eeb1b94c28fe480ce7729e11376f
   };
 
   const signOut = async () => {
