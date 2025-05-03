@@ -226,7 +226,7 @@ function App() {
 {/*         Chat Messages */}
         <div
           ref={chatContainerRef}
-          className="p-4 h-[370px] sm:h-[430px] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-gray-800/50"
+          className="p-4 h-[390px] sm:h-[430px] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-gray-800/50"
         >
           {messages.map((msg, idx) => (
             <div
