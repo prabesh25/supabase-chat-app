@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { supabase } from "./supabaseClient";
+import forestBg from './images/forestbg.jpg';
 
 function App() {
   const [session, setSession] = useState([]);
@@ -119,7 +120,7 @@ function App() {
   return (
     <div
     className="bg-cover min-h-screen relative flex items-center justify-center p-4"
-    style={{ backgroundImage: 'url("public/images/forestbg.jpg")' }}
+    style={{ backgroundImage: 'url("/images/forestbg.jpg")' }}
   >
   
       <button
