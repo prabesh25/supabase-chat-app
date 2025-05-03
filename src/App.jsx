@@ -118,9 +118,9 @@ function App() {
 
   return (
     <div
-      className="bg-cover min-h-screen relative flex items-center justify-center p-4"
-      style={{ backgroundImage: 'url("public/images/forestbg.jpg")' }}
-    >
+  className="bg-cover min-h-screen relative flex items-center justify-center p-4"
+  style={{ backgroundImage: 'url("/images/forestbg.jpg")' }}
+>
       <button
         onClick={() => setShowReadme(true)}
         className="px-3 py-1 top-4 absolute bg-gray-600/50 hover:bg-gray-500/60 text-gray-200 rounded-lg
