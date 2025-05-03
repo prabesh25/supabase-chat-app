@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { supabase } from "./supabaseClient";
-import forestBg from './images/forestbg.jpg';
+// import forestBg from './images/forestbg.jpg';
 
 function App() {
   const [session, setSession] = useState([]);
@@ -63,15 +63,11 @@ function App() {
   }, [session]);
 
   const signIn = async () => {
-<<<<<<< HEAD
     await supabase.auth.signInWithOAuth({ provider: "google",
       options: {
-        redirectTo: 'https://supabase-chat-ap.vercel.app/', // replace with your Vercel URL
+        redirectTo: 'https://supabase-chat-ap.vercel.app/', 
       },
      });
-=======
-    await supabase.auth.signInWithOAuth({ provider: "google" });
->>>>>>> 8811df612d44eeb1b94c28fe480ce7729e11376f
   };
 
   const signOut = async () => {
@@ -120,9 +116,9 @@ function App() {
   return (
     <div
     className="bg-cover min-h-screen relative flex items-center justify-center p-4"
-    // style={{ backgroundImage: 'url("/images/forestbg.jpg")' }}
+    style={{ backgroundImage: 'url("/images/forestbg.jpg")' }}
     // Use this format:
-style={{ backgroundImage: `url(${forestBg})` }}
+// style={{ backgroundImage: `url(${forestBg})` }}
   >
   
       <button
