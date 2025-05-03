@@ -128,7 +128,7 @@ function App() {
       >
         How to Use
       </button>
-      <div className="w-full h-[600px] max-w-2xl border-none bg-blue/5 backdrop-blur-[3px] rounded-xl border shadow-[0px_5px_50px_2px_#59dea9]">
+      <div className="w-full h-[600px] max-w-3xl border-none bg-blue/5 backdrop-blur-[3px] rounded-xl border shadow-[0px_5px_50px_2px_#59dea9]">
         {/* Header */}
         <div className="flex justify-between items-center p-6 border-b border-gray-400/50">
           <div className="space-y-1">
