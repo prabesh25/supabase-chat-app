@@ -116,10 +116,7 @@ function App() {
   return (
     <div
     className="bg-cover min-h-screen relative flex items-center justify-center p-4"
-    style={{ backgroundImage: 'url("/images/forestbg.jpg")' }}
-    // Use this format:
-// style={{ backgroundImage: `url(${forestBg})` }}
-  >
+    style={{ backgroundImage: 'url("/images/forestbg.jpg")' }}>
   
       <button
         onClick={() => setShowReadme(true)}
