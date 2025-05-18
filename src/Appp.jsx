@@ -6,6 +6,7 @@ import { useEffect, useRef } from "react";
 import { supabase } from "./supabaseClient";
 
 function App() {
+  // Use state haru ko declaration, value haru update ra change garna ko lagi
   const [session, setSession] = useState([]);
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
@@ -13,6 +14,7 @@ function App() {
   const chatContainerRef = useRef(null)
   const scroll = useRef()
 
+  // use-effect hook for running while the page loads
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
@@ -25,19 +27,20 @@ function App() {
     return () => subscription.unsubscribe();
   }, []);
 
-  //signin
+  // this is sign in
   const signIn = async () => {
     await supabase.auth.signInWithOAuth({
       provider: "google",
     });
   };
 
-  //signout
+  // this is sign out
 
   const signOut = async () => {
     const { error } = await supabase.auth.signOut();
   };
 
+  // use effect hook message ma change hudha khari yo phari run huncha
   useEffect(() => {
 setTimeout(() => {
   if(chatContainerRef.current) {
@@ -46,6 +49,7 @@ setTimeout(() => {
 })
   }, [messages])
 
+  // user lai check garna ko lagi
   useEffect(() => {
     if (!session?.user) {
       setUsersOnline([]);
@@ -62,7 +66,7 @@ setTimeout(() => {
       setMessages((prevMessages) => [...prevMessages, payload.payload]);
     });
 
-    //track user presence subscribe
+    // user ko presence subscribe track garna ko lagi
     roomOne.subscribe(async (status) => {
       if (status === "SUBSCRIBED") {
         await roomOne.track({
@@ -71,7 +75,8 @@ setTimeout(() => {
       }
     });
 
-    //handle user presence
+    //user ko presence track garna ko lagi
+    // session ma change hudha khari you phari chancha
     roomOne.on("presence", { event: "sync" }, () => {
       const state = roomOne.presenceState();
       setUsersOnline(Object.keys(state));
@@ -82,7 +87,7 @@ setTimeout(() => {
     };
   }, [session]);
 
-  //send message
+  //send message garna ko lagi
   const sendMessage = async (e) => {
     e.preventDefault();
 
@@ -119,7 +124,7 @@ setTimeout(() => {
     return (
       <div className="min-h-screen bg-[#1e1e1e] text-white flex items-center justify-center p-4">
         <div className="w-full max-w-3xl border border-gray-700 rounded-lg p-4 space-y-4">
-          {/* header */}
+          {/* header  part ho*/}
           <div className="flex justify-between items-center border-b border-gray-700 pb-2">
             <div>
               <p className="text-sm">
@@ -135,7 +140,7 @@ setTimeout(() => {
               Sign out
             </button>
           </div>
-{/* main chat */}
+{/* main chat part ho yo*/}
 <div ref={chatContainerRef} className="p-4 flex flex-col overflow-y-auto h-[500px]">
   {messages.map((msg, idx) => (
     <div
@@ -144,7 +149,7 @@ setTimeout(() => {
         msg?.user_name === session?.user?.email ? "justify-end" : "justify-start"
       }`}
     >
-      {/* received message on left */}
+      {/* received message on left side ma dhakauna ko lagi */}
       {msg?.user_name !== session?.user?.email && (
         <img
           src={msg.avatar}
@@ -186,7 +191,7 @@ setTimeout(() => {
   ))}
 </div>
 
-{/* message input */}
+{/* message input ko lagi*/}
 <form
   onSubmit={sendMessage}
   className="flex items-center space-x-2 border-t border-gray-700 pt-2"
