@@ -1,4 +1,9 @@
+// REAL TIME BORADCAST use garne no store of chats in db.
+// real time subabase channel ra broadcast ko use for sending messages.
+
+
 import { useState, useEffect, useRef } from "react";
+// client side ma run huna ko lagi import client: server site ma run na garne
 import { supabase } from "./supabaseClient";
 // import forestBg from './images/forestbg.jpg';
 
