@@ -13,6 +13,7 @@ function App() {
   const chatContainerRef = useRef(null);
   const scroll = useRef();
 
+      // use-effect hook for running while the page loads
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
@@ -27,6 +28,8 @@ function App() {
     return () => subscription.unsubscribe();
   }, []);
 
+    
+ // yo chai each time run huncha jaba message ma change huncha
   useEffect(() => {
     setTimeout(() => {
       if (chatContainerRef.current) {
@@ -36,6 +39,7 @@ function App() {
     });
   }, [messages]);
 
+    // user ko presence check garna
   useEffect(() => {
     if (!session?.user) {
       setUsersOnline([]);
@@ -64,6 +68,7 @@ function App() {
     return () => roomOne.unsubscribe();
   }, [session]);
 
+    // sign in ko lagi
   const signIn = async () => {
     await supabase.auth.signInWithOAuth({ provider: "google",
       options: {
@@ -72,10 +77,12 @@ function App() {
      });
   };
 
+    // signout ko lagi
   const signOut = async () => {
     await supabase.auth.signOut();
   };
 
+    // messages haru send garna ko lagi
   const sendMessage = async (e) => {
     e.preventDefault();
     supabase.channel("room_one").send({
@@ -91,6 +98,7 @@ function App() {
     setNewMessage("");
   };
 
+    // message send garda exact time dhakauna kati khera message sent vako vanera
   const formatTime = (isoString) => {
     return new Date(isoString).toLocaleTimeString("en-us", {
       hour: "numeric",
@@ -99,6 +107,7 @@ function App() {
     });
   };
 
+    // session available na hudha signin page ma redirect garna
   if (!session) {
     return (
       <div className="w-full min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 to-gray-800">
@@ -128,7 +137,7 @@ function App() {
         How to Use
       </button>
       <div className="w-full h-[600px] max-w-3xl border-none bg-blue/5 backdrop-blur-[3px] rounded-xl border shadow-[0px_5px_50px_2px_#59dea9]">
-        {/* Header */}
+        {/* Header part ho yo */}
         <div className="flex justify-between items-center p-6 border-b border-gray-400/50">
           <div className="space-y-1">
             <p className="text-sm font-medium text-gray-300">
@@ -156,7 +165,7 @@ function App() {
           </div>
         </div>
 
-        {/* README Popup */}
+        {/* README Popup ko lagi */}
         {showReadme && (
           <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 backdrop-blur-sm">
             <div className="bg-gray-800/90 backdrop-blur-lg rounded-xl p-6 max-w-md w-full mx-4 border border-gray-700/50">
@@ -222,7 +231,7 @@ function App() {
           </div>
         )}
 
-{/*         Chat Messages */}
+{/*Chat Messages haru ko part ho hai*/}
         <div
           ref={chatContainerRef}
           className="p-4 h-[390px] sm:h-[430px] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-gray-800/50"
@@ -276,7 +285,7 @@ function App() {
           ))}
         </div>
 
-        {/* Message Input */}
+        {/* Message Input ko part ho hai*/}
         <form
           onSubmit={sendMessage}
           className="p-4 border-t border-gray-400/50"
@@ -307,3 +316,6 @@ function App() {
 }
 
 export default App;
+
+
+
