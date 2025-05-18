@@ -3,6 +3,8 @@ import { supabase } from "./supabaseClient";
 // import forestBg from './images/forestbg.jpg';
 
 function App() {
+    // Use state haru ko declaration, value haru update ra change garna ko lagi
+
   const [session, setSession] = useState([]);
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
