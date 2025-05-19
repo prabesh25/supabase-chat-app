@@ -20,6 +20,9 @@ function App() {
 
       // use-effect hook for running while the page loads
   useEffect(() => {
+      //.getsession check garne ko lagi user loggedin cha ki chaina vanera
+      //.then - data: session ko kam vanya parkhina supabase le session ko info send garun jel
+      //ani setsesstion(session) xai agi declare garako "usestate: setSession" ma ako response lai set garnu.
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
     });
