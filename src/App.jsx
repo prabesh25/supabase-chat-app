@@ -76,21 +76,26 @@ function App() {
       setMessages((prev) => [...prev, payload.payload]);
     });
 
+      // room join vaye pachi uuser online lai trach krakhna ko lagi
     roomOne.subscribe(async (status) => {
       if (status === "SUBSCRIBED") {
         await roomOne.track({ id: session?.user?.id });
       }
     });
 
+      // chages herna ko lagi ko online cha vanera, 
+      // yesla chai userOnline state lai update garcha sabai user ko ids le.
     roomOne.on("presence", { event: "sync" }, () => {
       const state = roomOne.presenceState();
       setUsersOnline(Object.keys(state));
     });
 
+      // component unmount hudha room leave 
     return () => roomOne.unsubscribe();
   }, [session]);
 
     // sign in ko lagi
+    // google bata signin huncha ani redirect huncha app ko link ma hai.
   const signIn = async () => {
     await supabase.auth.signInWithOAuth({ provider: "google",
       options: {
@@ -105,11 +110,16 @@ function App() {
   };
 
     // messages haru send garna ko lagi
+    // send message le sabai jana lai message send garcha group ma vako jati lai
   const sendMessage = async (e) => {
     e.preventDefault();
+      // s.c ('r.o') ko kam chat-room ma redirect garne ho
+      //.send ra broadcast : ko kam vanya sabai lai message send garne ho jo jo room ma cha
     supabase.channel("room_one").send({
       type: "broadcast",
+        // broadcast lai name dina ko lagi ho
       event: "message",
+        // data send gariako vanya payload vai halyo
       payload: {
         message: newMessage,
         user_name: session?.user?.email,
@@ -117,7 +127,7 @@ function App() {
         timestamp: new Date().toISOString(),
       },
     });
-    setNewMessage("");
+    setNewMessage(""); //input box clear garne ho message snet gari saka paxi.
   };
 
     // message send garda exact time dhakauna kati khera message sent vako vanera
