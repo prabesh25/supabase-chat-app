@@ -27,12 +27,22 @@ function App() {
       setSession(session);
     });
 
+      // auth changes lai listen garna ko lagi: user login ra logout hudha 
+      //       supabase.auth.onAuthStateChange ko kam vanya
+      //  login/logout events hudha listen garnu ho, user login ra logout hudha khari yo function run huncha hai.
+
     const {
+        
       data: { subscription },
+
+// event, session => setsession:session 
+// auth changes hudha yo function run huncha
+// new session lincha ani save garcha using setSession.
     } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
     });
 
+      //simple cleanup function ho: user le page change gardha,  listening garne stop garcha.
     return () => subscription.unsubscribe();
   }, []);
 
@@ -54,10 +64,14 @@ function App() {
       return;
     }
 
+//Supabase ko channel create garcha : roomone name
+// ani user ko id le garara user lai track garcha   
     const roomOne = supabase.channel("room_one", {
       config: { presence: { key: session?.user?.id } },
     });
 
+      //message haru ko lagi listen garcha ani, Listen for real-time "message" broadcasts.
+        // message sent hudha khari : messages list ma add garcha
     roomOne.on("broadcast", { event: "message" }, (payload) => {
       setMessages((prev) => [...prev, payload.payload]);
     });
